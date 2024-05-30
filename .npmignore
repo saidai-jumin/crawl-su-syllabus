@@ -1,4 +1,36 @@
+# node_modules ディレクトリは含めない
 node_modules
+
+# ソースディレクトリを含めない（ビルド成果物だけを含める）
 src
+
+# TypeScript のソースファイルを含めない
 *.ts
-*.map
+*.tsx
+
+# テストディレクトリを含めない
+test
+tests
+
+# ローカル開発環境固有のファイルを含めない
+*.log
+*.swo
+*.swp
+*.tmp
+*.temp
+*.DS_Store
+*.idea
+*.vscode
+
+# Git関連のファイルを含めない
+.git
+.gitignore
+.npmignore
+
+# 各種設定ファイルを含めない
+.eslintrc
+*.config.js
+
+# ドキュメントを含めない（必要に応じて）
+README.md
+LICENSE
