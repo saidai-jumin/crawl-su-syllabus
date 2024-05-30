@@ -1,24 +1,19 @@
 {
   "name": "bun-ex",
-  "module": "index.ts",
+  "version": "1.0.0",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./ && npm run dts-esm && npm run dts-cjs",
-    "dts-esm": "tsup ./src/index.ts --dts-only --format esm --out-dir ./",
-    "dts-cjs": "tsup ./src/index.ts --dts-only --format cjs --out-dir ./"
-
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build": "npm run build:cjs && npm run build:esm",
+    "prepublishOnly": "npm run build"
   },
   "files": [
-    "**/*.ts",
-    "./dist/index.d.ts",
-    "tsconfig.json",
-    "!**/*.test.ts",
-    "!**/__test__"
+    "dist/**/*"
   ],
-  "devDependencies": {
-    "@types/bun": "latest",
-    "tsup": "^8.0.2"
-  },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
