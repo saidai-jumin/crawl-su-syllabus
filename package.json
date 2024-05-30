@@ -1,22 +1,26 @@
 {
-  "name": "sh",
+  "name": "bun-ex",
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run index.ts"
+    "dts": "tsup ./src/index.ts --dts-only --format esm --out-dir ./dist"
   },
+  "files": [
+    "**/*.ts",
+    "./dist/index.d.ts",
+    "tsconfig.json",
+    "!**/*.test.ts",
+    "!**/__test__"
+  ],
   "devDependencies": {
     "@types/bun": "latest",
-    "prisma": "^5.14.0"
+    "tsup": "^8.0.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@prisma/client": "^5.14.0",
-    "@types/inquirer": "^9.0.7",
     "axios": "^1.7.2",
-    "cheerio": "^1.0.0-rc.12",
-    "inquirer": "^9.2.22"
+    "cheerio": "^1.0.0-rc.12"
   }
 }

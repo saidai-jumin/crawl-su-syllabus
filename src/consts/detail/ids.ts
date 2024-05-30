@@ -1,6 +1,6 @@
 export const ids = {
   // 講義年
-  // "year": "ctl00_phContents_sylSummary_txtLctYear_lbl",
+  "year": "ctl00_phContents_sylSummary_txtLctYear_lbl",
 
   // 前期後期
   "semester": "ctl00_phContents_sylSummary_txtTerm_lbl",

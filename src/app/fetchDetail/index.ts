@@ -2,8 +2,9 @@ import { get } from "@/utils";
 import book from "./book";
 import convert from "./convert";
 import { isExist } from "./isExist";
+import type { FetchDetail } from "@/types";
 
-export const fetchList = async (id: string, lang: "1" | "2" | "ja" | "en" | "日" | "英" = "1") => {
+export const fetchDetail: FetchDetail = async (id, lang = "1") => {
   // lang 1 か 2に変換する
   const langMap: Record<string, string> = {
     "ja": "1",

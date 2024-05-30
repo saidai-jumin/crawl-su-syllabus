@@ -8,6 +8,7 @@ const convert = (html: string): LessonDetailText => {
   const $ = load(html);
 
   const data: LessonDetailText = {
+    year: "",
     semester: "",
     faculty: "",
     lang: "",
