@@ -3,7 +3,10 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dts": "tsup ./src/index.ts --dts-only --format esm --out-dir ./dist"
+    "build": "bun build ./src/index.ts --outdir ./ && npm run dts-esm && npm run dts-cjs",
+    "dts-esm": "tsup ./src/index.ts --dts-only --format esm --out-dir ./",
+    "dts-cjs": "tsup ./src/index.ts --dts-only --format cjs --out-dir ./"
+
   },
   "files": [
     "**/*.ts",
