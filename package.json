@@ -6,13 +6,17 @@
     "dev": "bun run index.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prisma": "^5.14.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@prisma/client": "^5.14.0",
     "@types/inquirer": "^9.0.7",
+    "axios": "^1.7.2",
+    "cheerio": "^1.0.0-rc.12",
     "inquirer": "^9.2.22"
   }
 }

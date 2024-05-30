@@ -1,71 +1,29 @@
 import inquirer from 'inquirer';
 import { execSync } from 'child_process';
+import { questions, type AnswersType } from '@/option';
+import { writeFileSync } from 'fs';
+import { fetchList } from '@/app/fetchDetail';
 
-const questions = [
-  {
-    type: 'input',
-    name: 'projectName',
-    message: 'What is your project named?',
-  },
-  {
-    type: 'list',
-    name: 'useTypeScript',
-    message: 'Would you like to use TypeScript?',
-    choices: ['No', 'Yes'],
-  },
-  {
-    type: 'list',
-    name: 'useESLint',
-    message: 'Would you like to use ESLint?',
-    choices: ['No', 'Yes'],
-  },
-  {
-    type: 'list',
-    name: 'useTailwind',
-    message: 'Would you like to use Tailwind CSS?',
-    choices: ['No', 'Yes'],
-  },
-  {
-    type: 'list',
-    name: 'useSrcDir',
-    message: 'Would you like to use `src/` directory?',
-    choices: ['No', 'Yes'],
-  },
-  {
-    type: 'list',
-    name: 'useAppRouter',
-    message: 'Would you like to use App Router? (recommended)',
-    choices: ['No', 'Yes'],
-  },
-  {
-    type: 'list',
-    name: 'customizeAlias',
-    message: 'Would you like to customize the default import alias (@/*)?',
-    choices: ['No', 'Yes'],
-  },
-];
+const main = async () => {
+  const data = await fetchList("24F00004");
+  // jsonで保存
+  writeFileSync('data.json', JSON.stringify(data, null, 2));
+}
 
-inquirer.prompt(questions).then(answers => {
-  const {
-    projectName,
-    useTypeScript,
-    useESLint,
-    useTailwind,
-    useSrcDir,
-    useAppRouter,
-    customizeAlias
-  } = answers;
+main();
 
-  const commands = [
-    `npx create-next-app@latest ${projectName}`,
-    useTypeScript === 'Yes' ? '--typescript' : '--no-typescript',
-    useESLint === 'Yes' ? '--eslint' : '--no-eslint',
-    useTailwind === 'Yes' ? '--tailwind' : '--no-tailwind',
-    useSrcDir === 'Yes' ? '--src-dir' : '--no-src-dir',
-    useAppRouter === 'Yes' ? '--app' : '--no-app',
-    customizeAlias === 'Yes' ? '--custom-alias' : '--no-custom-alias',
-  ].filter(Boolean).join(' ');
 
-  console.log(`Running command: ${commands}`);
-  execSync(commands, { stdio: 'inherit' });
-});
+
+
+// inquirer.prompt(questions).then((answers: AnswersType) => {
+//   console.log(answers);
+//   const {
+//     year,
+//     faculty,
+//   } = answers;
+
+//   const commands = `ts-node src/index.ts ${year} ${faculty}`;
+
+//   console.log(`Running command: ${commands}`);
+//   // execSync(commands, { stdio: 'inherit' });
+// });
