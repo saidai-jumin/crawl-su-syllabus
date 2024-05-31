@@ -135,6 +135,8 @@ Facultyは以下の文字列リテラルのいずれかです。
 
 シラバスのURLの `lct_year`の下2桁 + `lct_cd`
 
+上のURLだと`24A05106`
+
 ### LessonSummary
 
 シラバスの概要です。
