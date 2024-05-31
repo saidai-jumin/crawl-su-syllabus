@@ -5,18 +5,16 @@
     "moduleDetection": "force",
     "allowJs": true,
     "rootDir": "./src",
-    "outDir": "./build/types",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
     },
     "moduleResolution": "node",
     "declaration": true,
-    "declarationDir": "./dist/types",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": false,
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

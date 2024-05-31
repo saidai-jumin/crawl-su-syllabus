@@ -1,12 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBase = void 0;
+const _2020_1 = require("./2020");
 const _2021_1 = require("./2021");
 const _2022_1 = require("./2022");
 const _2023_1 = require("./2023");
 const _2024_1 = require("./2024");
 const getBase = (year) => {
     switch (year) {
+        case 2020:
+            return _2020_1.base;
         case 2021:
             return _2021_1.base;
         case 2022:

@@ -542,7 +542,6 @@ export declare const base: {
     __VIEWSTATE58: string;
     __VIEWSTATE580: string;
     __VIEWSTATE581: string;
-    __VIEWSTATE582: string;
     __VIEWSTATE59: string;
     __VIEWSTATE6: string;
     __VIEWSTATE60: string;
