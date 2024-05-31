@@ -1,1 +1,1 @@
-import { ids } from "@/consts/detail/ids";
+import { ids } from "./consts/detail/ids";

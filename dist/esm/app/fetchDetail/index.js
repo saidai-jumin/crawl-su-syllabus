@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { get } from "@/utils";
+import { get } from "../../utils";
 import book from "./book";
 import convert from "./convert";
 import { isExist } from "./isExist";

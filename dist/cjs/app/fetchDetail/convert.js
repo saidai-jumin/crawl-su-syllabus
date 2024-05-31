@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const cheerio_1 = require("cheerio");
-const ids_1 = require("@/consts/detail/ids");
+const ids_1 = require("../../consts/detail/ids");
 const convert = (html) => {
     const $ = (0, cheerio_1.load)(html);
     const data = {

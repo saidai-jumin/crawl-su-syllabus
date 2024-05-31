@@ -5,6 +5,7 @@
     "moduleDetection": "force",
     "allowJs": true,
     "rootDir": "./src",
+    "outDir": "./build/types",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,

@@ -7,9 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { post } from "@/utils";
-import { fields } from "@/consts";
-import { getBase } from "@/consts/search/base";
+import { post } from "../../utils";
+import { fields } from "../../consts";
+import { getBase } from "../../consts/search/base";
 import convert from "./convert";
 export const fetchList = (option) => __awaiter(void 0, void 0, void 0, function* () {
     const { year, field } = option;

@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import { ids } from "@/consts/detail/ids";
+import { ids } from "../../consts/detail/ids";
 const convert = (html) => {
     const $ = load(html);
     const data = {

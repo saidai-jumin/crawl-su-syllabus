@@ -8,12 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchList = void 0;
-const utils_1 = require("@/utils");
-const consts_1 = require("@/consts");
-const base_1 = require("@/consts/search/base");
-const convert_1 = require("./convert");
+const utils_1 = require("../../utils");
+const consts_1 = require("../../consts");
+const base_1 = require("../../consts/search/base");
+const convert_1 = __importDefault(require("./convert"));
 const fetchList = (option) => __awaiter(void 0, void 0, void 0, function* () {
     const { year, field } = option;
     const base = (0, base_1.getBase)(year);

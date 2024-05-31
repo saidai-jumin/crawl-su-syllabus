@@ -8,11 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchDetail = void 0;
-const utils_1 = require("@/utils");
-const book_1 = require("./book");
-const convert_1 = require("./convert");
+const utils_1 = require("../../utils");
+const book_1 = __importDefault(require("./book"));
+const convert_1 = __importDefault(require("./convert"));
 const isExist_1 = require("./isExist");
 const fetchDetail = (id_1, ...args_1) => __awaiter(void 0, [id_1, ...args_1], void 0, function* (id, lang = "1") {
     // lang 1 か 2に変換する
