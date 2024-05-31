@@ -1,4 +1,9 @@
-# Crawl SU Syllabus
+<p align="center">
+  <img src="https://github.com/miryoku7/sh/assets/84623421/587fd335-b9e3-4c61-9d88-8bb9246a159e">
+</p>
+<h1 align="center">
+    Crawl SU Syllabus
+</h1>
 
 このプロジェクトは、JavaScriptを使用して埼玉大学のシラバスをクローリングするプログラムです。
 
@@ -221,3 +226,8 @@ Facultyは以下の文字列リテラルのいずれかです。
 ## License
 
 MIT
+
+## 更新期間
+
+[埼大住民](https://saidai-jumin.com)の運営が終了するまで
+
