@@ -14,6 +14,7 @@ const utils_1 = require("../../utils");
 const book_1 = require("./book");
 const convert_1 = require("./convert");
 const isExist_1 = require("./isExist");
+const consts_1 = require("../../consts");
 const fetchDetail = (id_1, ...args_1) => __awaiter(void 0, [id_1, ...args_1], void 0, function* (id, lang = "1") {
     // lang 1 か 2に変換する
     const langMap = {
@@ -27,7 +28,7 @@ const fetchDetail = (id_1, ...args_1) => __awaiter(void 0, [id_1, ...args_1], vo
     const year = `20${id.slice(0, 2)}`;
     const code = id.slice(2);
     const langCode = Object.keys(langMap).includes(lang) ? langMap[lang] : "1";
-    const html = yield (0, utils_1.get)(`${process.env.SYLLABUS_URL}/detailMain.aspx?lct_year=${year}&lct_cd=${code}&je_cd=${langCode}`);
+    const html = yield (0, utils_1.get)(`${consts_1.SYLLABUS_URL}/detailMain.aspx?lct_year=${year}&lct_cd=${code}&je_cd=${langCode}`);
     if (!(0, isExist_1.isExist)(html)) {
         throw new Error("該当する授業が見つかりませんでした。");
     }

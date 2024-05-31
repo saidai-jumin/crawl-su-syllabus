@@ -14,11 +14,12 @@ const utils_1 = require("../../utils");
 const consts_1 = require("../../consts");
 const base_1 = require("../../consts/search/base");
 const convert_1 = require("./convert");
+const consts_2 = require("../../consts");
 const fetchList = (option) => __awaiter(void 0, void 0, void 0, function* () {
     const { year, field } = option;
     const base = (0, base_1.getBase)(year);
     const fieldCode = consts_1.fields[field];
-    const html = yield (0, utils_1.post)(`${process.env.SYLLABUS_URL}/`, Object.assign(Object.assign({}, base), { "ctl00$phContents$ddl_fac": fieldCode, "ctl00$phContents$ddl_year": year.toString() }));
+    const html = yield (0, utils_1.post)(`${consts_2.SYLLABUS_URL}/`, Object.assign(Object.assign({}, base), { "ctl00$phContents$ddl_fac": fieldCode, "ctl00$phContents$ddl_year": year.toString() }));
     const data = (0, convert_1.default)(html);
     return data;
 });

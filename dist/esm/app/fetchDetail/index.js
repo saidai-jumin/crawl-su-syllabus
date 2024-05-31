@@ -11,6 +11,7 @@ import { get } from "../../utils";
 import book from "./book";
 import convert from "./convert";
 import { isExist } from "./isExist";
+import { SYLLABUS_URL } from "../../consts";
 export const fetchDetail = (id_1, ...args_1) => __awaiter(void 0, [id_1, ...args_1], void 0, function* (id, lang = "1") {
     // lang 1 か 2に変換する
     const langMap = {
@@ -24,7 +25,7 @@ export const fetchDetail = (id_1, ...args_1) => __awaiter(void 0, [id_1, ...args
     const year = `20${id.slice(0, 2)}`;
     const code = id.slice(2);
     const langCode = Object.keys(langMap).includes(lang) ? langMap[lang] : "1";
-    const html = yield get(`${process.env.SYLLABUS_URL}/detailMain.aspx?lct_year=${year}&lct_cd=${code}&je_cd=${langCode}`);
+    const html = yield get(`${SYLLABUS_URL}/detailMain.aspx?lct_year=${year}&lct_cd=${code}&je_cd=${langCode}`);
     if (!isExist(html)) {
         throw new Error("該当する授業が見つかりませんでした。");
     }

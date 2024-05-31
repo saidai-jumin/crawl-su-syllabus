@@ -11,11 +11,12 @@ import { post } from "../../utils";
 import { fields } from "../../consts";
 import { getBase } from "../../consts/search/base";
 import convert from "./convert";
+import { SYLLABUS_URL } from "../../consts";
 export const fetchList = (option) => __awaiter(void 0, void 0, void 0, function* () {
     const { year, field } = option;
     const base = getBase(year);
     const fieldCode = fields[field];
-    const html = yield post(`${process.env.SYLLABUS_URL}/`, Object.assign(Object.assign({}, base), { "ctl00$phContents$ddl_fac": fieldCode, "ctl00$phContents$ddl_year": year.toString() }));
+    const html = yield post(`${SYLLABUS_URL}/`, Object.assign(Object.assign({}, base), { "ctl00$phContents$ddl_fac": fieldCode, "ctl00$phContents$ddl_year": year.toString() }));
     const data = convert(html);
     return data;
 });

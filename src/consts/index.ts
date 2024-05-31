@@ -16,3 +16,5 @@ export const fields: Record<Field, string> = {
   // "理工学研究科博士後期課程": "25",
   // "人文社会科学研究科博士後期課程": "27"
 }
+
+export const SYLLABUS_URL = "https://risyu.saitama-u.ac.jp/portal/public/syllabus"

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fields = void 0;
+exports.SYLLABUS_URL = exports.fields = void 0;
 exports.fields = {
     // "サマープログラム": "S03",
     "教養学部": "01",
@@ -17,3 +17,4 @@ exports.fields = {
     // "理工学研究科博士後期課程": "25",
     // "人文社会科学研究科博士後期課程": "27"
 };
+exports.SYLLABUS_URL = "https://risyu.saitama-u.ac.jp/portal/public/syllabus";
