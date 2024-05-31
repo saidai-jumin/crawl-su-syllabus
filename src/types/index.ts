@@ -5,6 +5,7 @@ export type Field = "教養学部" | "教育学部" | "経済学部" | "理学�
 export type FetchList = (options: Options) => Promise<LessonSummary[]>;
 export type FetchDetail = (id: string, lang?: "1" | "2" | "ja" | "en" | "日" | "英") => Promise<LessonDetail>;
 
+export type LessonId = string;
 
 export type Options = {
   year: Year;
@@ -13,7 +14,7 @@ export type Options = {
 
 export type LessonSummary = {
   numberings: string;
-  id: string;
+  id: LessonId;
   language: string;
   lct_cd: string;
   je_cd: string;

@@ -1,17 +1,13 @@
-# SU Crawler
+# Crawl SU Syllabus
 
-このプロジェクトは、Bunを使用して大学のシラバスをクローリングするプログラムです。
+このプロジェクトは、JavaScriptを使用して埼玉大学のシラバスをクローリングするプログラムです。
 
 ## インストール
 
-まず、リポジトリをクローンして依存関係をインストールします。
+npmを使用してインストールします。
 
 ```sh
-git clone https://github.com/your-username/my-crawler.git
-
-cd my-crawler
-
-bun install
+npm install https://github.com/saidai-jumin/crawl-su-syllabus.git
 ```
 
 ## 使い方
@@ -19,7 +15,18 @@ bun install
 ### シラバスのリストを取得する
 
 ```ts
-import { fetchList } from 'my-crawler'
+import { fetchList, fetchDetail } from 'crawl-su-syllabus'
+
+const list = await fetchList({
+  year: 2024,
+  faculty: '経済学部'
+})
+// list: LessonSummary[]
+
+for (const item of list) {
+  const detail = await fetchDetail(item.id)
+  // detail: LessonDetail
+}
 ```
 
 ## Functions
@@ -30,6 +37,9 @@ fetchList: (option: [Options](#options)) => Promise\<[LessonSummary](#lessonsumm
 
 シラバスのリストを取得します。
 
+学部と開講年度を指定することができ、全件取得します。
+今後、他の検索条件を追加します。
+
 ```ts
 import { fetchList } from 'my-crawler'
 
@@ -37,10 +47,6 @@ const list = await fetchList({
   year: 2024,
   faculty: '経済学部'
 })
-
-for (const item of list) {
-  console.log(item)
-}
 ```
 
 ### fetchDetail
@@ -57,13 +63,18 @@ fetchDetail: (id: [LessonId](#lessonid), language?: 'ja' | 'en') => Promise\<[Le
 
 このAPIを使用して取得できるデータの翻訳スキーマです。
 
-[Lesson](#lesson)のKeyをKeyとし、その値を翻訳したものをValueとするオブジェクトです。
+[LessonDetail](#lessondetail)のKeyをKeyとし(booksは除く)、その値を翻訳したものをValueとするオブジェクトです。
 
 ```ts
-import { translationSchema } from 'my-crawler'
+import { fetchDetail, translationSchema } from 'my-crawler'
 
-console.log(translationSchema['faculty'])
-// Expected output: '開講学部'
+const lesson = await fetchDetail('24A05106')
+for (const key in lesson) {
+  if (key === 'books') continue;
+  console.log(translationSchema[key], lesson[key])
+  // if key is 'title', 
+  // Expected output: '講義名', '債権法'
+}
 ```
 
 ## Types
@@ -72,10 +83,26 @@ console.log(translationSchema['faculty'])
 
 シラバスのリストを取得する際のオプションです。
 
+今後、ページや検索条件を追加します。
+
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| year | number | 年度 |
+| year | [Year](#year) | 年度 |
 | faculty | [Faculty](#faculty) | 学期 |
+
+### Year
+
+年度の種類です。
+
+Yearはnumber型の以下のいずれかです。
+
+- 2020
+- 2021
+- 2022
+- 2023
+- 2024
+
+Field
 
 ### Faculty
 
@@ -107,10 +134,18 @@ Facultyは以下の文字列リテラルのいずれかです。
 検索結果の一覧に表示される情報です。
 
 | Name | Type | Description |
-| ---- | ---- | ----------- |
-| id | string | シラバスのID |
+| --- | --- | --- |
+| numberings | string | ナンバリング |
+| id | [LessonId](#lessonid) | オリジナルのシラバスのIDです。 |
+| language | string | 言語 |
+| lct_cd | string | 講義コード |
+| je_cd | string | 日英区分コード |
+| link | string | リンク |
 | title | string | シラバスのタイトル |
-| faculty | [Faculty](#faculty) | 開講学部 |
+| teacher | string | 担当教員 |
+| term | string | 学期 |
+| daytime | string | 曜日時限 |
+| target | string | 対象学生 |
 
 ### LessonDetail
 
@@ -118,14 +153,57 @@ Facultyは以下の文字列リテラルのいずれかです。
 個別ぺージに表示される情報です。
 
 | Name | Type | Description |
-| ---- | ---- | ----------- |
-| id | string | シラバスのID |
-| title | string | シラバスのタイトル |
-| faculty | Faculty | 開講学部 |
+| --- | --- | --- |
+| year | string | 講義年 |
+| semester | string | 前期後期 |
+| faculty | string | 学部・学科 |
+| lang | string | 日英区分 |
+| title | string | 講義名（日本語） |
+| titleEn | string | 講義名（英語） |
+| numbering1 | string | ナンバリング1 |
+| numbering2 | string | ナンバリング2 |
+| field | string | 科目分野 |
+| teacher | string | 担当教員 |
+| targetStudent | string | 対象学生 |
+| targetGrade | string | 対象年次 |
+| credit | string | 単位数 |
+| type | string | 必修・指定選択・選択 |
+| time | string | 曜日時限 |
+| classroom | string | 教室 |
+| subjectGroup | string | 科目群 |
+| lectureNumber | string | 講義番号 |
+| designation | string | クラス指定 |
+| relatedItems | string | 関連項目 |
+| requirements | string | 履修条件 |
+| theme | string | テーマ |
+| goal | string | 到達目標 |
+| policyRelated | string | ディプロマ・ポリシーを含む関連 |
+| keyword | string | キーワード |
+| content | string | 内容 |
+| method | string | 方法 |
+| study | string | 事前・事後学習 |
+| webclass | string | 詳細（Webclass） |
+| evaluation | string | 評価方法 |
+| evaluationStandard | string | 評価基準 |
+| message | string | メッセージ |
+| quota | string | 人数制限 |
+| phone | string | 電話 |
+| email | string | メアド |
+| officeHours | string | オフィスアワー |
+| contact | string | 連絡先（その他） |
+| relatedUrl | string | 関連URL |
+| note | string | その他備考 |
+| books | [Book](#book)[] | 教科書・参考図書 |
 
 ### Book
 
 教科書の情報です。
+
+| Name | Type | Description |
+|---|---|---|
+| isbn | string | ISBN |
+| title | string | タイトル |
+| bookType | string | テキスト or 参考図書 |
 
 ### Lesson
 
@@ -135,3 +213,11 @@ Facultyは以下の文字列リテラルのいずれかです。
 | ---- | ---- | ----------- |
 | id | string | シラバスのID |
 | title | string | シラバスのタイトル |
+
+## Contribution
+
+*IssueやPull Requestを歓迎します!!*
+
+## License
+
+MIT
