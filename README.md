@@ -97,7 +97,7 @@ for (const baseKey in lesson) {
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | year | [Year](#year) | 年度 |
-| faculty | [Field](#field) | 学期 |
+| faculty | [Field](#field) | 開講学部 |
 
 ### Year
 
@@ -116,7 +116,7 @@ Yearはnumber型の以下のいずれかです。
 学部の種類です。
 
 Facultyは以下の文字列リテラルのいずれかです。
-基盤科目=教育機構です
+教育機構=基盤科目です
 
 - '教育機構'
 - '教養学部'
