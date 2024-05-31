@@ -7,6 +7,9 @@
 
 このプロジェクトは、JavaScriptを使用して埼玉大学のシラバスをクローリングするプログラムです。
 
+> [!NOTE]
+> クローリングはサーバー側に非常に負担をかけます。常識の範囲内かつ、アクセスが集中しない時期にお使いください
+
 ## インストール
 
 npmを使用してインストールします。
@@ -17,14 +20,14 @@ npm install https://github.com/saidai-jumin/crawl-su-syllabus.git
 
 ## 使い方
 
-### シラバスのリストを取得する
+シラバスのリストを取得し展開する例
 
 ```ts
 import { fetchList, fetchDetail } from 'crawl-su-syllabus'
 
 const list = await fetchList({
   year: 2024,
-  faculty: '経済学部'
+  field: '経済学部'
 })
 // list: LessonSummary[]
 
@@ -71,10 +74,11 @@ fetchDetail: (id: [LessonId](#lessonid), language?: 'ja' | 'en') => Promise\<[Le
 [LessonDetail](#lessondetail)のKeyをKeyとし(booksは除く)、その値を翻訳したものをValueとするオブジェクトです。
 
 ```ts
-import { fetchDetail, translationSchema } from 'my-crawler'
+import { fetchDetail, translationSchema, type LessonDetail } from 'crawl-su-syllabus'
 
 const lesson = await fetchDetail('24A05106')
-for (const key in lesson) {
+for (const baseKey in lesson) {
+  const key = baseKey as keyof LessonDetail;
   if (key === 'books') continue;
   console.log(translationSchema[key], lesson[key])
   // if key is 'title', 
@@ -93,7 +97,7 @@ for (const key in lesson) {
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | year | [Year](#year) | 年度 |
-| faculty | [Faculty](#faculty) | 学期 |
+| faculty | [Field](#field) | 学期 |
 
 ### Year
 
@@ -107,9 +111,7 @@ Yearはnumber型の以下のいずれかです。
 - 2023
 - 2024
 
-Field
-
-### Faculty
+### Field
 
 学部の種類です。
 
