@@ -59,7 +59,7 @@ const list = await fetchList({
 
 ### fetchDetail
 
-fetchDetail: (id: [LessonId](#lessonid), language?: 'ja' | 'en') => Promise\<[LessonId](#lessonid)>
+fetchDetail: (id: [LessonId](#lessonid), language?: 'ja' | 'en' = 'ja') => Promise\<[LessonId](#lessonid)>
 
 シラバスの詳細を取得します。
 
@@ -214,14 +214,6 @@ Facultyは以下の文字列リテラルのいずれかです。
 | title | string | タイトル |
 | bookType | string | テキスト or 参考図書 |
 
-### Lesson
-
-シラバスの情報です。
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| id | string | シラバスのID |
-| title | string | シラバスのタイトル |
 
 ## Contribution
 
