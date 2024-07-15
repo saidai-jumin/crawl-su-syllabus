@@ -49,7 +49,7 @@ fetchList: (option: [Options](#options)) => Promise\<[LessonSummary](#lessonsumm
 今後、他の検索条件を追加します。
 
 ```ts
-import { fetchList } from 'my-crawler'
+import { fetchList } from 'crawl-su-syllabus'
 
 const list = await fetchList({
   year: 2024,
